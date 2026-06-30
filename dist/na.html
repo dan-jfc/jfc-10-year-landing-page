@@ -16,8 +16,8 @@
     --paper:#F6F3EC;
     --paper-2:#FBFAF6;
     --ink:#1A2A36;
-    --blue:#26C0FD;     /* JFC Blue */
-    --orange:#FFB500;   /* Primary brand orange */
+    --blue:#26C0FD;
+    --orange:#FFB500;
     --lightblue:#CAF3FF;
     --line:#D9D3C6;
     --mute:#5E6B73;
@@ -34,26 +34,12 @@
   }
   .wrap{max-width:1000px;margin:0 auto;padding:0 24px}
 
-  /* mock browser chrome cue — this is a concept preview */
   .preview-bar{
     background:var(--navy-2);color:#9DB2BE;font-family:var(--f-body);font-weight:600;
     font-size:11px;letter-spacing:.1em;text-transform:uppercase;text-align:center;
     padding:8px 16px;border-bottom:1px solid rgba(255,255,255,.08)
   }
 
-  /* market toggle */
-  .toggle-band{background:var(--navy);padding:18px 0}
-  .toggle-inner{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
-  .toggle-label{font-family:var(--f-body);font-weight:600;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#7C97A6}
-  .toggle{display:inline-flex;background:var(--navy-2);border-radius:8px;padding:4px;gap:4px}
-  .toggle button{
-    font-family:var(--f-display);font-weight:700;font-size:14px;color:#9DB2BE;
-    background:transparent;border:none;padding:9px 18px;border-radius:6px;cursor:pointer;transition:all .2s
-  }
-  .toggle button.on{background:var(--paper-2);color:var(--navy)}
-  .toggle button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
-
-  /* hero */
   .hero{background:var(--navy);color:var(--paper-2);padding:46px 0 56px;text-align:center}
   .est{font-family:var(--f-body);font-weight:600;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--orange);margin-bottom:20px}
   .hero h1{
@@ -61,11 +47,10 @@
     line-height:.92;letter-spacing:-.02em;margin-bottom:18px
   }
   .hero h1 em{color:var(--blue);font-style:normal}
-  .hero .sub{font-family:var(--f-body);font-weight:500;font-size:clamp(17px,2.4vw,21px);color:#C4D2DA;max-width:560px;margin:0 auto 26px;min-height:64px}
+  .hero .sub{font-family:var(--f-body);font-weight:500;font-size:clamp(17px,2.4vw,21px);color:#C4D2DA;max-width:560px;margin:0 auto 26px}
   .trust{font-family:var(--f-body);font-weight:500;font-size:13px;letter-spacing:.02em;color:#7C97A6}
   .trust b{color:var(--blue);font-weight:700}
 
-  /* quiz */
   .quiz-sec{padding:54px 0}
   .quiz-head{text-align:center;margin-bottom:8px}
   .quiz-eyebrow{font-family:var(--f-body);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--navy);margin-bottom:12px}
@@ -90,9 +75,8 @@
     font-family:var(--f-body);font-weight:700;font-size:13px;color:transparent;transition:all .14s
   }
   .sq.on .tick{background:var(--blue);border-color:var(--blue);color:var(--navy)}
-  .sq.on .tick::before{content:"✓"}
+  .sq.on .tick::before{content:"\2713"}
 
-  /* result */
   .result{
     max-width:760px;margin:28px auto 0;background:var(--navy);border-radius:14px;
     padding:32px 30px;color:var(--paper-2);text-align:center;
@@ -112,7 +96,6 @@
   .cta.blue{background:var(--blue)}
   .cta-note{display:block;margin-top:14px;font-family:var(--f-body);font-weight:600;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#7C97A6}
 
-  /* stories strip */
   .stories{background:var(--lightblue);border-top:1px solid rgba(12,34,51,.08);border-bottom:1px solid rgba(12,34,51,.08);padding:54px 0}
   .stories .lead-in{text-align:center;max-width:620px;margin:0 auto 34px}
   .stories .lead-in .eb{font-family:var(--f-body);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--navy);opacity:.65;margin-bottom:12px}
@@ -124,7 +107,6 @@
   .story .who{font-family:var(--f-body);font-weight:500;font-size:13.5px;color:var(--mute)}
   .story .who b{color:var(--ink);font-weight:700}
 
-  /* closer */
   .closer{padding:60px 0;text-align:center}
   .closer h2{font-family:var(--f-display);font-weight:800;font-size:clamp(28px,5vw,48px);color:var(--navy);letter-spacing:-.02em;line-height:1;margin:0 auto 14px;max-width:680px}
   .closer p{font-family:var(--f-body);font-weight:500;color:var(--mute);max-width:480px;margin:0 auto 28px;font-size:17px}
@@ -146,24 +128,14 @@
 </head>
 <body>
 
-<div class="preview-bar">Concept preview · The Accidental Travel Club · interactive mock</div>
-
-<div class="toggle-band">
-  <div class="wrap toggle-inner">
-    <span class="toggle-label">Preview market</span>
-    <div class="toggle" role="group" aria-label="Choose market">
-      <button id="btn-uk" class="on" onclick="setMarket('uk')">UK · warm</button>
-      <button id="btn-na" onclick="setMarket('na')">US / CA · cold</button>
-    </div>
-  </div>
-</div>
+<div class="preview-bar">Concept preview · The Accidental Travel Club · US / CA</div>
 
 <section class="hero">
   <div class="wrap">
     <div class="est">The Accidental Travel Club · Est. 2016</div>
-    <h1 id="hero-h1">How Jack's<br>are <em>you?</em></h1>
-    <p class="sub" id="hero-sub"></p>
-    <div class="trust" id="hero-trust"></div>
+    <h1>How Jack's<br>are <em>you?</em></h1>
+    <p class="sub">We've spent ten years turning sensible people into ones who book on a whim. You'd fit right in.</p>
+    <div class="trust"><b>3.6 million</b> members. A decade of fares too good to argue with. Now landing in North America.</div>
   </div>
 </section>
 
@@ -171,16 +143,26 @@
   <div class="wrap">
     <div class="quiz-head">
       <div class="quiz-eyebrow">Tick everything that's ever been you</div>
-      <h2 id="quiz-title"></h2>
-      <div class="quiz-sub-line" id="quiz-sub"></div>
+      <h2>Sound like anyone you know? (It's you.)</h2>
+      <div class="quiz-sub-line">Tick the ones that ring true.</div>
     </div>
-    <div class="card-grid" id="grid" role="group" aria-label="Quiz squares"></div>
+    <div class="card-grid" id="grid" role="group" aria-label="Quiz squares">
+      <button class="sq" aria-pressed="false"><span class="tick"></span><span>Book trips on a whim</span></button>
+      <button class="sq" aria-pressed="false"><span class="tick"></span><span>Chase the fare more than the destination</span></button>
+      <button class="sq" aria-pressed="false"><span class="tick"></span><span>Are always hunting the next deal</span></button>
+      <button class="sq" aria-pressed="false"><span class="tick"></span><span>Would fly somewhere you can't pronounce</span></button>
+      <button class="sq" aria-pressed="false"><span class="tick"></span><span>Travel more than your friends do</span></button>
+      <button class="sq" aria-pressed="false"><span class="tick"></span><span>Say yes before you've thought it through</span></button>
+      <button class="sq" aria-pressed="false"><span class="tick"></span><span>Keep a 'maybe I'll just move there' list</span></button>
+      <button class="sq" aria-pressed="false"><span class="tick"></span><span>Check flights when you're bored</span></button>
+      <button class="sq" aria-pressed="false"><span class="tick"></span><span>Treat a long weekend as a passport opportunity</span></button>
+    </div>
     <div class="result" id="result" aria-live="polite">
       <div class="score-num" id="score"></div>
       <div class="verdict" id="verdict"></div>
       <div class="verdict-sub" id="verdict-sub"></div>
-      <a href="#" class="cta" id="cta"></a>
-      <span class="cta-note" id="cta-note"></span>
+      <a href="#" class="cta blue" id="cta">Join free + you could win a year →</a>
+      <span class="cta-note">Free Standby membership · auto-entered to win Takeoff for a year</span>
     </div>
   </div>
 </section>
@@ -193,17 +175,17 @@
     </div>
     <div class="story-grid">
       <div class="story">
-        <div class="dest">✈ Porto</div>
+        <div class="dest">Porto</div>
         <div class="q">"I only booked because the fare was ridiculous. Three years later I'd learned Portuguese."</div>
         <div class="who"><b>Meg</b> · member since 2019</div>
       </div>
       <div class="story">
-        <div class="dest">✈ Bergamo</div>
+        <div class="dest">Bergamo</div>
         <div class="q">"Booked for a weekend. Came home a week later having changed my mind about a lot of things."</div>
         <div class="who"><b>Sam</b> · member since 2021</div>
       </div>
       <div class="story">
-        <div class="dest">✈ Tbilisi</div>
+        <div class="dest">Tbilisi</div>
         <div class="q">"My favourite trip ever started with a destination I genuinely couldn't pronounce."</div>
         <div class="who"><b>Priya</b> · member since 2018</div>
       </div>
@@ -213,135 +195,45 @@
 
 <section class="closer">
   <div class="wrap">
-    <h2 id="closer-h2"></h2>
-    <p id="closer-p"></p>
-    <a href="#" class="cta" id="closer-cta"></a>
+    <h2>You don't have to plan to become a frequent traveller. It just happens.</h2>
+    <p>Join free, get the fares too good to ignore, and you could win a year of Takeoff on us.</p>
+    <a href="#" class="cta blue" id="closer-cta">Join free →</a>
   </div>
 </section>
 
 <footer>Jack's Flight Club · concept preview · copy, offer codes and scoring tiers TBC</footer>
 
 <script>
-  const DATA = {
-    uk: {
-      heroSub: "You've been a member of this club for years. You just never got the card.",
-      heroTrust: "Joined by <b>3.6 million</b> people who book first and check the calendar later.",
-      quizTitle: "Be honest. How many of these have you done?",
-      quizSub: "No judgement. Mostly.",
-      squares: [
-        "Booked before checking your annual leave",
-        "Gone somewhere because you couldn't ignore the fare",
-        "Opened a map to find where it actually was",
-        "Sent a deal to a friend who still hasn't booked it",
-        "Talked yourself out of it, then booked anyway",
-        "Pronounced the destination wrong the whole trip",
-        "Turned a weekend into a week",
-        "Booked an error fare and prayed it would hold",
-        "Got the email and booked within the hour"
-      ],
-      tiers: [
-        {min:7, v:"Certified.", s:"You've been a fully paid-up member of this club for years without the membership. Time to fix the paperwork."},
-        {min:4, v:"You're basically one of us already.", s:"A few more and you'd be unbearable about it. We mean that as a compliment."},
-        {min:0, v:"Early days.", s:"This is exactly what a Takeoff membership is for. We'll sort the rest."}
-      ],
-      ctaText: "Make it official — £10 off Takeoff →",
-      ctaClass: "orange",
-      ctaNote: "£10 off any Takeoff plan · anniversary offer",
-      closerH2: "Ten years of booking first and checking the calendar later.",
-      closerP: "Make it official and your inbox becomes your best travel agent.",
-      closerCta: "Get £10 off Takeoff →",
-      closerCtaClass: "orange"
-    },
-    na: {
-      heroSub: "We've spent ten years turning sensible people into ones who book on a whim. You'd fit right in.",
-      heroTrust: "<b>3.6 million</b> members. A decade of fares too good to argue with. Now landing in North America.",
-      quizTitle: "Sound like anyone you know? (It's you.)",
-      quizSub: "Tick the ones that ring true.",
-      squares: [
-        "Book trips on a whim",
-        "Chase the fare more than the destination",
-        "Are always hunting the next deal",
-        "Would fly somewhere you can't pronounce",
-        "Travel more than your friends do",
-        "Say yes before you've thought it through",
-        "Keep a 'maybe I'll just move there' list",
-        "Check flights when you're bored",
-        "Treat a long weekend as a passport opportunity"
-      ],
-      tiers: [
-        {min:7, v:"You're exactly our kind of traveller.", s:"Honestly, you should already be getting our emails. Let's change that, free."},
-        {min:4, v:"You'd fit right in.", s:"This club was built for people who think like you. The door's open and it costs nothing."},
-        {min:0, v:"Curious counts.", s:"One free sign-up and you might find out you're more Jack's than you thought."}
-      ],
-      ctaText: "Join free + you could win a year →",
-      ctaClass: "blue",
-      ctaNote: "Free Standby membership · auto-entered to win Takeoff for a year",
-      closerH2: "You don't have to plan to become a frequent traveller. It just happens.",
-      closerP: "Join free, get the fares too good to ignore, and you could win a year of Takeoff on us.",
-      closerCta: "Join free →",
-      closerCtaClass: "blue"
-    }
-  };
+  const tiers = [
+    {min:7, v:"You're exactly our kind of traveller.", s:"Honestly, you should already be getting our emails. Let's change that, free."},
+    {min:4, v:"You'd fit right in.", s:"This club was built for people who think like you. The door's open and it costs nothing."},
+    {min:0, v:"Curious counts.", s:"One free sign-up and you might find out you're more Jack's than you thought."}
+  ];
 
-  let market = 'uk';
-  let selected = new Set();
+  const squares = document.querySelectorAll('.sq');
+  const total = squares.length;
 
-  function setMarket(m){
-    market = m;
-    selected.clear();
-    document.getElementById('btn-uk').classList.toggle('on', m==='uk');
-    document.getElementById('btn-na').classList.toggle('on', m==='na');
-    render();
-  }
+  squares.forEach((sq, i) => {
+    sq.onclick = () => {
+      const isOn = sq.classList.toggle('on');
+      sq.setAttribute('aria-pressed', isOn ? 'true' : 'false');
+      updateResult();
+    };
+  });
 
-  function render(){
-    const d = DATA[market];
-    document.getElementById('hero-sub').innerHTML = d.heroSub;
-    document.getElementById('hero-trust').innerHTML = d.heroTrust;
-    document.getElementById('quiz-title').textContent = d.quizTitle;
-    document.getElementById('quiz-sub').textContent = d.quizSub;
-
-    const grid = document.getElementById('grid');
-    grid.innerHTML = '';
-    d.squares.forEach((txt, i) => {
-      const b = document.createElement('button');
-      b.className = 'sq';
-      b.setAttribute('aria-pressed','false');
-      b.innerHTML = '<span class="tick"></span><span>'+txt+'</span>';
-      b.onclick = () => {
-        if(selected.has(i)){ selected.delete(i); b.classList.remove('on'); b.setAttribute('aria-pressed','false'); }
-        else { selected.add(i); b.classList.add('on'); b.setAttribute('aria-pressed','true'); }
-        updateResult();
-      };
-      grid.appendChild(b);
-    });
-
-    document.getElementById('closer-h2').textContent = d.closerH2;
-    document.getElementById('closer-p').textContent = d.closerP;
-    const cc = document.getElementById('closer-cta');
-    cc.textContent = d.closerCta;
-    cc.className = 'cta ' + d.closerCtaClass;
-
-    document.getElementById('result').classList.remove('show');
-  }
-
-  function updateResult(){
-    const d = DATA[market];
-    const n = selected.size;
+  function updateResult() {
+    const selected = document.querySelectorAll('.sq.on').length;
     const res = document.getElementById('result');
-    if(n === 0){ res.classList.remove('show'); return; }
+    if (selected === 0) {
+      res.classList.remove('show');
+      return;
+    }
     res.classList.add('show');
-    document.getElementById('score').innerHTML = n + '<span>/' + d.squares.length + '</span>';
-    const tier = d.tiers.find(t => n >= t.min);
+    document.getElementById('score').innerHTML = selected + '<span>/' + total + '</span>';
+    const tier = tiers.find(t => selected >= t.min);
     document.getElementById('verdict').textContent = tier.v;
     document.getElementById('verdict-sub').textContent = tier.s;
-    const cta = document.getElementById('cta');
-    cta.textContent = d.ctaText;
-    cta.className = 'cta ' + d.ctaClass;
-    document.getElementById('cta-note').textContent = d.ctaNote;
   }
-
-  render();
 </script>
 
 </body>

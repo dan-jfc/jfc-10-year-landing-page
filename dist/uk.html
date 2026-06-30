@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Accidental Travel Club — How Jack's Are You?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700,800,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0C2233;
+    --navy-2:#143348;
+    --paper:#F6F3EC;
+    --paper-2:#FBFAF6;
+    --ink:#1A2A36;
+    --blue:#26C0FD;
+    --orange:#FFB500;
+    --lightblue:#CAF3FF;
+    --line:#D9D3C6;
+    --mute:#5E6B73;
+    --f-display:'Cabinet Grotesk','Space Grotesk',system-ui,sans-serif;
+    --f-body:'Urbanist',system-ui,sans-serif;
+    --f-accent:'Caveat',cursive;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);color:var(--ink);
+    font-family:var(--f-body);font-size:16px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1000px;margin:0 auto;padding:0 24px}
+
+  .preview-bar{
+    background:var(--navy-2);color:#9DB2BE;font-family:var(--f-body);font-weight:600;
+    font-size:11px;letter-spacing:.1em;text-transform:uppercase;text-align:center;
+    padding:8px 16px;border-bottom:1px solid rgba(255,255,255,.08)
+  }
+
+  .hero{background:var(--navy);color:var(--paper-2);padding:46px 0 56px;text-align:center}
+  .est{font-family:var(--f-body);font-weight:600;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--orange);margin-bottom:20px}
+  .hero h1{
+    font-family:var(--f-display);font-weight:800;font-size:clamp(40px,8vw,84px);
+    line-height:.92;letter-spacing:-.02em;margin-bottom:18px
+  }
+  .hero h1 em{color:var(--blue);font-style:normal}
+  .hero .sub{font-family:var(--f-body);font-weight:500;font-size:clamp(17px,2.4vw,21px);color:#C4D2DA;max-width:560px;margin:0 auto 26px}
+  .trust{font-family:var(--f-body);font-weight:500;font-size:13px;letter-spacing:.02em;color:#7C97A6}
+  .trust b{color:var(--blue);font-weight:700}
+
+  .quiz-sec{padding:54px 0}
+  .quiz-head{text-align:center;margin-bottom:8px}
+  .quiz-eyebrow{font-family:var(--f-body);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--navy);margin-bottom:12px}
+  .quiz-head h2{font-family:var(--f-display);font-weight:800;font-size:clamp(26px,4.4vw,40px);color:var(--navy);letter-spacing:-.015em;line-height:1.02}
+  .quiz-head .quiz-sub-line{font-family:var(--f-accent);font-weight:700;color:var(--orange);font-size:clamp(22px,3.2vw,30px);margin-top:6px;line-height:1}
+
+  .card-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:32px auto 0;max-width:760px
+  }
+  .sq{
+    background:var(--paper-2);border:1.5px solid var(--line);border-radius:10px;
+    padding:18px 16px;min-height:120px;cursor:pointer;text-align:left;font-size:14.5px;
+    line-height:1.32;color:var(--ink);font-family:var(--f-body);font-weight:500;
+    transition:transform .14s, border-color .14s, background .14s;position:relative;display:flex;align-items:flex-end
+  }
+  .sq:hover{transform:translateY(-2px);border-color:var(--mute)}
+  .sq:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+  .sq.on{background:var(--navy);border-color:var(--navy);color:var(--paper-2)}
+  .sq .tick{
+    position:absolute;top:12px;right:12px;width:24px;height:24px;border-radius:50%;
+    border:1.5px solid var(--line);display:flex;align-items:center;justify-content:center;
+    font-family:var(--f-body);font-weight:700;font-size:13px;color:transparent;transition:all .14s
+  }
+  .sq.on .tick{background:var(--blue);border-color:var(--blue);color:var(--navy)}
+  .sq.on .tick::before{content:"\2713"}
+
+  .result{
+    max-width:760px;margin:28px auto 0;background:var(--navy);border-radius:14px;
+    padding:32px 30px;color:var(--paper-2);text-align:center;
+    opacity:0;transform:translateY(8px);transition:opacity .35s, transform .35s
+  }
+  .result.show{opacity:1;transform:translateY(0)}
+  .score-num{font-family:var(--f-display);font-weight:800;font-size:clamp(40px,8vw,64px);line-height:1;color:var(--blue);margin-bottom:6px}
+  .score-num span{color:#5C7585;font-size:.45em}
+  .verdict{font-family:var(--f-display);font-weight:700;font-size:clamp(20px,3.4vw,28px);margin-bottom:8px;letter-spacing:-.01em}
+  .verdict-sub{font-family:var(--f-body);font-weight:500;color:#C4D2DA;font-size:16px;max-width:440px;margin:0 auto 24px}
+  .cta{
+    display:inline-block;font-family:var(--f-display);font-weight:700;font-size:17px;
+    padding:16px 30px;border-radius:9px;text-decoration:none;color:var(--navy);transition:transform .14s
+  }
+  .cta:hover{transform:translateY(-2px)}
+  .cta.orange{background:var(--orange)}
+  .cta.blue{background:var(--blue)}
+  .cta-note{display:block;margin-top:14px;font-family:var(--f-body);font-weight:600;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#7C97A6}
+
+  .stories{background:var(--lightblue);border-top:1px solid rgba(12,34,51,.08);border-bottom:1px solid rgba(12,34,51,.08);padding:54px 0}
+  .stories .lead-in{text-align:center;max-width:620px;margin:0 auto 34px}
+  .stories .lead-in .eb{font-family:var(--f-body);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--navy);opacity:.65;margin-bottom:12px}
+  .stories .lead-in h2{font-family:var(--f-display);font-weight:800;font-size:clamp(24px,4vw,36px);color:var(--navy);letter-spacing:-.015em;line-height:1.04}
+  .story-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .story{background:var(--paper-2);border:1px solid rgba(12,34,51,.08);border-radius:12px;padding:24px;position:relative}
+  .story .dest{font-family:var(--f-body);font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);background:var(--orange);display:inline-block;padding:3px 9px;border-radius:4px;margin-bottom:14px}
+  .story .q{font-family:var(--f-display);font-weight:700;font-size:17px;color:var(--navy);line-height:1.32;margin-bottom:16px;letter-spacing:-.01em}
+  .story .who{font-family:var(--f-body);font-weight:500;font-size:13.5px;color:var(--mute)}
+  .story .who b{color:var(--ink);font-weight:700}
+
+  .closer{padding:60px 0;text-align:center}
+  .closer h2{font-family:var(--f-display);font-weight:800;font-size:clamp(28px,5vw,48px);color:var(--navy);letter-spacing:-.02em;line-height:1;margin:0 auto 14px;max-width:680px}
+  .closer p{font-family:var(--f-body);font-weight:500;color:var(--mute);max-width:480px;margin:0 auto 28px;font-size:17px}
+
+  footer{background:var(--navy);color:#7C97A6;font-family:var(--f-body);font-weight:500;font-size:11px;letter-spacing:.06em;text-align:center;padding:22px 16px}
+
+  @media(max-width:720px){
+    .card-grid{grid-template-columns:repeat(2,1fr)}
+    .story-grid{grid-template-columns:1fr}
+  }
+  @media(max-width:420px){
+    .card-grid{grid-template-columns:1fr}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{transition:none !important}
+    .result{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="preview-bar">Concept preview · The Accidental Travel Club · UK</div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="est">The Accidental Travel Club · Est. 2016</div>
+    <h1>How Jack's<br>are <em>you?</em></h1>
+    <p class="sub">You've been a member of this club for years. You just never got the card.</p>
+    <div class="trust">Joined by <b>3.6 million</b> people who book first and check the calendar later.</div>
+  </div>
+</section>
+
+<section class="quiz-sec">
+  <div class="wrap">
+    <div class="quiz-head">
+      <div class="quiz-eyebrow">Tick everything that's ever been you</div>
+      <h2>Be honest. How many of these have you done?</h2>
+      <div class="quiz-sub-line">No judgement. Mostly.</div>
+    </div>
+    <div class="card-grid" id="grid" role="group" aria-label="Quiz squares">
+      <button class="sq" aria-pressed="false"><span class="tick"></span><span>Booked before checking your annual leave</span></button>
+      <button class="sq" aria-pressed="false"><span class="tick"></span><span>Gone somewhere because you couldn't ignore the fare</span></button>
+      <button class="sq" aria-pressed="false"><span class="tick"></span><span>Opened a map to find where it actually was</span></button>
+      <button class="sq" aria-pressed="false"><span class="tick"></span><span>Sent a deal to a friend who still hasn't booked it</span></button>
+      <button class="sq" aria-pressed="false"><span class="tick"></span><span>Talked yourself out of it, then booked anyway</span></button>
+      <button class="sq" aria-pressed="false"><span class="tick"></span><span>Pronounced the destination wrong the whole trip</span></button>
+      <button class="sq" aria-pressed="false"><span class="tick"></span><span>Turned a weekend into a week</span></button>
+      <button class="sq" aria-pressed="false"><span class="tick"></span><span>Booked an error fare and prayed it would hold</span></button>
+      <button class="sq" aria-pressed="false"><span class="tick"></span><span>Got the email and booked within the hour</span></button>
+    </div>
+    <div class="result" id="result" aria-live="polite">
+      <div class="score-num" id="score"></div>
+      <div class="verdict" id="verdict"></div>
+      <div class="verdict-sub" id="verdict-sub"></div>
+      <a href="#" class="cta orange" id="cta">Make it official — £10 off Takeoff →</a>
+      <span class="cta-note">£10 off any Takeoff plan · anniversary offer</span>
+    </div>
+  </div>
+</section>
+
+<section class="stories">
+  <div class="wrap">
+    <div class="lead-in">
+      <div class="eb">10 years of places we never meant to go</div>
+      <h2>The best trips were never on the bucket list.</h2>
+    </div>
+    <div class="story-grid">
+      <div class="story">
+        <div class="dest">Porto</div>
+        <div class="q">"I only booked because the fare was ridiculous. Three years later I'd learned Portuguese."</div>
+        <div class="who"><b>Meg</b> · member since 2019</div>
+      </div>
+      <div class="story">
+        <div class="dest">Bergamo</div>
+        <div class="q">"Booked for a weekend. Came home a week later having changed my mind about a lot of things."</div>
+        <div class="who"><b>Sam</b> · member since 2021</div>
+      </div>
+      <div class="story">
+        <div class="dest">Tbilisi</div>
+        <div class="q">"My favourite trip ever started with a destination I genuinely couldn't pronounce."</div>
+        <div class="who"><b>Priya</b> · member since 2018</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="closer">
+  <div class="wrap">
+    <h2>Ten years of booking first and checking the calendar later.</h2>
+    <p>Make it official and your inbox becomes your best travel agent.</p>
+    <a href="#" class="cta orange" id="closer-cta">Get £10 off Takeoff →</a>
+  </div>
+</section>
+
+<footer>Jack's Flight Club · concept preview · copy, offer codes and scoring tiers TBC</footer>
+
+<script>
+  const tiers = [
+    {min:7, v:"Certified.", s:"You've been a fully paid-up member of this club for years without the membership. Time to fix the paperwork."},
+    {min:4, v:"You're basically one of us already.", s:"A few more and you'd be unbearable about it. We mean that as a compliment."},
+    {min:0, v:"Early days.", s:"This is exactly what a Takeoff membership is for. We'll sort the rest."}
+  ];
+
+  const squares = document.querySelectorAll('.sq');
+  const total = squares.length;
+
+  squares.forEach((sq, i) => {
+    sq.onclick = () => {
+      const isOn = sq.classList.toggle('on');
+      sq.setAttribute('aria-pressed', isOn ? 'true' : 'false');
+      updateResult();
+    };
+  });
+
+  function updateResult() {
+    const selected = document.querySelectorAll('.sq.on').length;
+    const res = document.getElementById('result');
+    if (selected === 0) {
+      res.classList.remove('show');
+      return;
+    }
+    res.classList.add('show');
+    document.getElementById('score').innerHTML = selected + '<span>/' + total + '</span>';
+    const tier = tiers.find(t => selected >= t.min);
+    document.getElementById('verdict').textContent = tier.v;
+    document.getElementById('verdict-sub').textContent = tier.s;
+  }
+</script>
+
+</body>
+</html>
